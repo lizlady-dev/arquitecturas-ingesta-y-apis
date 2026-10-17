@@ -1,0 +1,5 @@
+pandas
+fastapi
+uvicorn[standar]
+strawberry-graphql[fastapi]
+psycopg[binary]
