@@ -1,0 +1,3 @@
+﻿API,Solicitudes,Tiempo promedio (ms),Mediana (ms),P95 (ms),Mínimo (ms),Máximo (ms)
+REST,100,88.676,77.554,178.446,42.711,194.044
+GraphQL,100,88.986,81.423,180.062,40.259,194.57
