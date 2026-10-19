@@ -1,0 +1,3 @@
+﻿Arquitectura,Solicitudes,Correctas,Errores,Promedio_ms,Mediana_ms,P95_ms,Minimo_ms,Maximo_ms
+Lambda,100,100,0,73.94,64.239,167.993,32.619,197.051
+Kappa,100,100,0,75.81,65.697,166.94,39.604,186.118
