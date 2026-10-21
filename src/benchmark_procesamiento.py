@@ -1,4 +1,3 @@
-
 import os
 import statistics
 from pathlib import Path
@@ -7,10 +6,7 @@ from time import perf_counter
 import pandas as pd
 import psycopg
 
-
-# ============================================================
-# CONFIGURACION DE POSTGRESQL
-# ============================================================
+# configuracion DE POSTGRESQL
 
 DB_CONFIG = {
     "host": os.getenv("BI_DB_HOST", "localhost"),
@@ -28,9 +24,8 @@ SALIDA_DIR = BASE_DIR / "results" / "procesamiento_nuevo"
 SALIDA_DIR.mkdir(parents=True, exist_ok=True)
 
 
-# ============================================================
-# 1. LEER DATOS DIRECTAMENTE DE POSTGRESQL
-# ============================================================
+# lee datos de POSTGRESQL
+
 
 def cargar_datos_postgresql():
     print("Conectando directamente a PostgreSQL...")
@@ -53,10 +48,7 @@ def cargar_datos_postgresql():
 
     return df
 
-
-# ============================================================
-# 2. IDENTIFICAR LAS COLUMNAS DE VENTAS
-# ============================================================
+# indentifica columnas de venta
 
 def buscar_columna(df, opciones, descripcion):
     for columna in opciones:
@@ -135,10 +127,7 @@ def preparar_datos(df):
 
     return datos
 
-
-# ============================================================
-# 3. PROTOTIPO LAMBDA: PROCESAMIENTO POR LOTES
-# ============================================================
+#  procesamiento lambda por lote
 
 def procesar_lambda(datos):
     resultado = (
@@ -155,9 +144,8 @@ def procesar_lambda(datos):
     return resultado
 
 
-# ============================================================
-# 4. PROTOTIPO KAPPA: PROCESAMIENTO SECUENCIAL
-# ============================================================
+# procesamiento secuencuial kappa
+
 
 def procesar_kappa(datos):
     acumulados = {}
@@ -191,10 +179,7 @@ def procesar_kappa(datos):
         .reset_index(drop=True)
     )
 
-
-# ============================================================
-# 5. MEDIR SOLO EL PROCESAMIENTO
-# ============================================================
+# mide tiempo de procesamiento
 
 def medir_procesamiento(funcion, datos):
     tiempos = []
@@ -229,10 +214,7 @@ def crear_metricas(nombre, tiempos, cantidad_registros):
         ) if promedio > 0 else None,
     }
 
-
-# ============================================================
-# 6. EJECUTAR EXPERIMENTO Y VALIDAR RESULTADOS
-# ============================================================
+# 6. exjuta y valida
 
 def main():
     # La conexión y lectura se realizan antes del cronómetro.
